@@ -1,0 +1,136 @@
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Staatliches&display=swap" rel="stylesheet">
+		<title>Your 1st JS!</title>
+		<link rel="stylesheet" href="style.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" href="images/boxing1.gif">
+	</head>	
+
+	<body>
+	<div id="shake-wrapper">
+		<!-- Notice how each div has an 'onclick' attribute which links to a function in the JS file -->
+		<div class="wide-page-more">
+			<div class="thin-col">
+				<div id="reset" onclick="reloadPage()">
+					<span>Reset</span>
+				</div>
+				<div class="col-short will-spin" id="sidebar" onclick="everythingSpin()">
+					<img id="sidebar-img" src="images/ringcrop.png">
+				</div>
+			</div>
+			<div class="wide-col will-spin">
+				<div id="envelope-container">
+					<div id="envelope" onclick="alternateGif(this);">
+						<img src="images/circle arrow.png">
+					</div>
+				</div>
+				
+				<div id="box-switcher" onclick="switchBox()">
+					<!-- Center tag is used because this is a unique case where elements NEED to overflow for javascript functionality (flex doesnt overflow, using block)-->
+					<center>
+						<div id="first-switch" class="box light_blue">
+							<img src="images/boxing1.gif" id="boxing1">
+						</div>
+						<div class="box orange">
+							<img src="images/mar straight.jpg" id="boxing2">
+						</div>
+					</center>
+				</div>
+				<div id="description">
+					<div id="description-text-wrap">
+						<span id="title">TYLER MAR:</span>
+						<p onclick="spinThis(this);">•Full-time baller, half-time scholar.</p>
+						<p onclick="spinThis(this);">•Intense Lakers fan</p>
+						<p onclick="spinThis(this);">•Second-best Track Coach 2019</p>
+					</div>
+					<div id="description-image-wrap">
+						<img onclick="loadChart(this);"	src="images/chart2.png">
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="wide-page-less">
+			<div id="slot-container" class="will-spin">
+				<div class="slot purple">
+					<span>Strength:</span>
+					<div class="slider clickable slider-preclick">
+						<div class="slider-filler black" onclick="setPercent(this, 'slide-one')"></div>
+						<div class="slider-filler slider-gradient"></div>
+					</div>
+				</div>
+				<div class="slot red  will-spin">
+					<span>Speed:</span>
+					<div class="slider clickable slider-preclick">
+						<div class="slider-filler black" onclick="setPercent(this, 'slide-five')"></div>
+						<div class="slider-filler slider-gradient"></div>
+					</div>
+				</div>
+				<div class="slot purple  will-spin">
+					<span>Range:</span>
+					<div class="slider clickable slider-preclick">
+						<div class="slider-filler black" onclick="setPercent(this, 'slide-two')"></div>
+						<div class="slider-filler slider-gradient"></div>
+					</div>
+				</div>
+				<div class="slot red">
+					<span>Endurance:</span>
+					<div class="slider clickable slider-preclick">
+						<div class="slider-filler black" onclick="setPercent(this, 'slide-four')"></div>
+						<div class="slider-filler slider-gradient"></div>
+					</div>
+				</div>
+				<div class="slot purple">
+					<span>Growth Potential:</span>
+					<div class="slider clickable slider-preclick">
+						<div class="slider-filler black" onclick="setPercent(this, 'slide-three')"></div>
+						<div class="slider-filler slider-gradient"></div>
+					</div>
+				</div>
+			</div>
+			<div id="audio-container" class="will-spin">
+				<div class="audio-slot light-pink will-spin" onclick="playAudioMic(this)" data-sound="mar-cena">
+					<span>Official Theme <br>Song</span>
+					<img  class="audio-button" src="images/microphone.png">
+				</div>
+				<div class="audio-slot light-orange"  onclick="playAudioMic(this)" data-sound="sfx-trash-talk" >
+					<span>Casting Clip</span>
+					<img class="audio-button" src="images/microphone.png">
+				</div>
+				<div class="audio-slot light-green"  onclick="randomSFX()">
+					<span>Famous Lines</span>
+					<img class="audio-button" src="images/microphone.png">
+				</div>
+			</div>
+		</div>
+		
+		<!--Audio file links for JS-->
+		<audio id="chart-sound" src="sounds/chart_statloaded.mp3">
+		<audio id="mar-cena" src="sounds/mar_cena.mp3">
+		
+		<audio class="stat-sound" src="sounds/slider-sound1.mp3">
+		<audio class="stat-sound" src="sounds/slider-sound2.mp3">
+		<audio class="stat-sound" src="sounds/slider-sound3.mp3">
+		<audio class="stat-sound" src="sounds/slider-sound4.mp3">
+		
+		<audio class="sfx-sound" src="sounds/sfx_120.mp3">
+		<audio class="sfx-sound" src="sounds/sfx_champion.mp3">
+		<audio class="sfx-sound" src="sounds/sfx_justdoit.mp3">
+		<audio class="sfx-sound" src="sounds/sfx_ko.mp3">
+		<audio class="sfx-sound" src="sounds/sfx_projectbrief.mp3">
+		<audio class="sfx-sound" src="sounds/sfx_snake.mp3">
+		<audio class="sfx-sound" src="sounds/sfx_yougotthis.mp3">
+		
+		<audio id="sfx-trash-talk" src="sounds/sfx_trashtalk.mp3">
+		
+		
+		<script src="script.js"></script>
+	</div>
+	</body>
+	
+</html>

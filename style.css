@@ -1,0 +1,614 @@
+
+/*makes sure that nothing on the page is going to be dragged on accident (when user tries to interact)*/
+* {
+	user-drag: none; 
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	display: flex;
+	flex-wrap: wrap;
+	overflow: hidden;
+	background-color: black;
+	background-image: url("images/mar straight.jpg");
+	background-size: 100%;
+}
+
+/* All basic Layout, rest supplied in unique id's and classes */
+.wide-col {
+	width:  80%;
+	height: 100%;
+	position: relative;
+}
+
+.thin-col {
+	width: 20%;
+	height: 100%;
+}
+
+.col-short {
+	width: 100%;
+	height:85%;
+}
+
+.wide-page-more {
+	width: 55%;
+	height: 100%;
+	display: flex;
+}
+
+.wide-page-less {
+	width: 45%;
+	height: 100%;
+	display: flex;
+}
+
+/* heavily reused class */
+.clickable {
+	cursor: pointer;
+}
+
+/*Since multiple parts of the box switcher button use this value, its a variable*/
+:root {
+  --envelope-size: 8vmin;
+}
+
+/*Colors are used by the three audio buttons*/
+.light-pink {background-color: #eb4034;}
+.light-orange {background-color: #f09218;}
+.light-green {background-color: #f0b618;}
+
+/*Wrapper allows the entire body to shake*/
+#shake-wrapper {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	display: flex;
+	flex-wrap: wrap;
+	transform: translate3d(0, 0, 0);
+}
+
+/*Reset button*/
+#reset {
+	height: 15%;
+	width: 100%;
+	background-color: yellow;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 4vmin;
+	font-family: 'Staatliches', cursive;
+	box-sizing: border-box;
+	border: 1vmin solid white;
+	text-shadow: 0px 2px 3px #ff0000;
+}
+
+#reset:hover {
+	animation: grow-text 0.1s forwards;
+}
+
+#reset:active {
+	border: 10px solid white;
+	filter: brightness(90%);
+}
+
+@keyframes grow-text {
+	to {
+		font-size: 5vmin;
+		text-shadow: 0px 2px 10px red;
+	}
+}
+
+/*Sidebar image before and after activation (from sliders)*/
+#sidebar {
+	overflow: hidden;
+	display: flex;
+	box-sizing: border-box;
+	border: 1vmin solid white;
+}
+
+#sidebar-img {
+	width: 150%;
+	filter: saturate(0) contrast(0.7);
+}
+
+#sidebar .oscillate:hover {
+	animation: none;
+	transform: scale(1.1);
+	cursor: pointer;
+}
+
+#sidebar .oscillate:active {
+	animation: none;
+	transform: scale(1.3);
+}
+
+/*Envelope-container, envelope, then image. This makes up the button that activates the box switcher*/
+#envelope-container {
+	width: 100%;
+	height: 50%;
+	position: absolute;
+	z-index: 5;
+	justify-content: left;
+	display: flex;
+}
+
+#envelope {
+	background-color: cyan;
+	width: var(--envelope-size);
+	height: var(--envelope-size);
+	position: absolute;
+	z-index: 5;
+	bottom: 0px;
+	box-sizing: border-box;
+	border: 4px solid black;
+	border-radius: 100%;
+}
+
+#envelope:hover {
+	filter: hue-rotate(90deg);
+	cursor: pointer;
+}
+
+#envelope img:active {
+	transform: scale(0.8);
+	filter: hue-rotate(90deg);
+}
+
+#envelope img {
+	width: 100%;
+	height: 100%;
+}
+
+/*The main image/gif that alternates*/
+#box-switcher {
+	width: 100%;
+	height: 50%;
+	overflow: hidden;
+    display: block;
+	background-color:orange;
+}
+/*The two different images to be alternates*/
+#boxing1 {
+	height: 200%;
+	width: 100%;
+}
+
+#boxing2 {
+	width: 100%;
+	height: 100%;
+}
+
+/*mar character description*/
+#description {
+	background-color:yellow;
+	border: 1vmin double orange;
+	width: 100%;
+	height: 50%;
+	display: flex;
+	color: black;
+	box-sizing: border-box;
+	padding: 3vmin;
+	animation: spin-horizontal-3d 2s forward;
+}
+
+#description-text-wrap {
+	width: 70%;
+	height: 100%;
+	font-size: 3.2vmin;
+	line-height: 100%;
+	font-family: 'Staatliches', cursive;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	text-shadow: 0 5px 5px #f59e42;
+}
+
+#description-image-wrap {
+	width: 30%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	animation: oscillate 3s infinite;
+}
+	
+	/*stat chart*/
+#description img {
+	width: 16vmin;
+	height: 16vmin;
+}
+
+#description img:hover {
+	transform: scale(1.1);
+	text-shadow: 0px 2px 1px black;
+	cursor: pointer;
+}
+
+#description img:active {
+	transform: scale(0.9) rotate(10deg);
+}
+
+/*part of description*/
+#title {
+	font-size: 5vmin;
+	margin-top: 2vmin;
+	margin-bottom: 1vh;
+}
+
+/*columns for the right side of the page*/
+#slot-container {
+	display: block;
+	height: 100%;
+	width: 50%;
+}
+
+#audio-container {
+	display: block;
+	height: 100%;
+	width: 50%;
+	box-sizing: border-box;
+}
+
+/*All audio layers*/
+.audio-slot {
+	width: 100%;
+	height: calc(100% / 3);
+	padding: 10px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+	font-size: 2.5vmin;
+	font-family: 'Anton', sans-serif;
+	color: black;
+	border: 5px solid black;
+}
+
+.audio-slot:hover {
+	transform: scale(1.05);
+	filter: brightness(120%);
+	cursor: pointer;
+}
+
+.audio-slot:active {
+	transform: scale(1);
+	border: 10px solid black;
+}
+
+.audio-button {
+	width: 14vmin;
+	height: 20vmin;
+	max-height: 100%;
+}
+
+.box {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/*Slot container > slot > slider > slider filler*/
+.slot {
+	width: 100%;
+	height: 20%;
+	color: white;
+	text-align: center;
+	font-family: 'Permanent Marker', cursive;
+	font-size: 4vmin;
+	box-sizing: border-box;
+	border: 3px solid black;
+	background-color: gray;
+		line-height: 4vmin;
+}
+
+
+.slider {
+	width: 80%;
+	height: 30%;
+	margin-left: 10%;
+	margin-top: 3vmin;
+	background-color: black;
+	overflow: hidden;
+	display: flex;
+	flex-direction: row-reverse;
+	flex-wrap: no-wrap;
+	flex-shrink: 0;
+	box-sizing: border-box;
+	border: 3px solid black;
+}
+
+.slider-preclick:hover {
+	filter: drop-shadow(4px 4px 4px red);
+}
+.slider-preclick:active {
+	filter: drop-shadow(4px 4px 6px orange);
+}
+
+.slider-preclick {
+	animation: oscillate-small 2s infinite;
+}
+
+.slider-filler {
+	min-width: 100%;
+	height: 100%;
+	background-color: #591000;
+}
+
+.slider-gradient {
+	background: rgb(33,0,61);
+	background: linear-gradient(90deg, yellow 0%, rgba(255,106,0,1) 78%, rgba(255,0,0,1) 100%);
+}
+
+
+/*ALL ANIMATIONS*/
+/*used for box switcher*/
+.slide-up {
+	animation: slide-up 1s forwards;
+}
+@keyframes slide-up {
+		from {height: 100%;}
+		to {height: 0%;}
+}
+
+.slide-down {
+	animation: slide-down 1s forwards;
+}
+@keyframes slide-down {
+	from {height: 0%;}
+	to {height: 100%;}
+}
+
+/*Used by the sliders in the html*/
+
+@keyframes slide-one {
+	to {width: 95%; min-width: 95%;}
+}
+@keyframes slide-two {
+	to {width: 60%; min-width: 60%;}
+}
+@keyframes slide-three {
+	to {width: 40%; min-width: 40%;}
+}
+@keyframes slide-four {
+	to {width: 20%; min-width: 20%;}
+}
+@keyframes slide-five {
+	to {width: 0%; min-width: 0%;}
+}
+/*used by the shake wrapper*/
+.shake {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97);
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+ 
+  20%, 80% {
+    transform: translate3d(5px, 2px, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-10px, -2px, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(6px, 0, 0);
+  }
+}
+/*similar to the box switcher animation, but made for the button*/
+.move-arrow-to-top {
+	animation: moveArrowToTop 1s forwards;
+}
+
+@keyframes moveArrowToTop {
+	from {
+		transform: rotate(0deg);
+		bottom: 0;
+	}
+	to {
+		transform: rotate(180deg);
+		bottom: calc(100% - var(--envelope-size));
+	}
+}
+
+.move-arrow-to-bottom {
+	animation: moveArrowToBottom 1s forwards;
+}
+
+@keyframes moveArrowToBottom {
+	from {
+		transform: rotate(180deg);
+		bottom: calc(100% - var(--envelope-size));
+	}
+	to {
+		transform: rotate(0deg);
+		bottom: 0px;
+	}
+}
+/*general oscillation*/
+.oscillate {
+	animation: oscillate 2s infinite;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes oscillate {
+	0% {transform: scale(1);}
+	50% {transform: scale(1.1);}
+	100% {transform: scale(1);}
+}
+.oscillate-small {
+	animation: oscillate-small 2s infinite;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes oscillate-small {
+	0% {transform: scale(1.05);}
+	50% {transform: scale(0.95);}
+	100% {transform: scale(1.05);}
+}
+/*Used to make everything in the page spin*/
+.spin {
+	animation: spin-horizontal-3d 6s linear;
+}
+
+@keyframes spin-horizontal-3d {
+	0% {transform: rotate3d(0) }
+	10% {transform: rotate3d(0, 0, 1, 200deg);}
+	40% {transform: rotate3d(0, 1, 1, 180deg);}
+	50% {transform: rotate3d(1, 1, 0, 90deg);}
+	75% {transform: rotate3d(1, 0, 0, 180deg);}
+	100% {transform: rotate3d(1, 1, 0, 360deg);}
+}
+
+/*quick half spin*/
+.spin-2d {
+	animation: spin-horizontal-2d 1s linear;
+}
+
+@keyframes spin-horizontal-2d {
+	0% {transform: rotate3d(0) }
+	50% {transform: rotate3d(0, 1, 0, 180deg);}
+	100% {transform: rotate3d(0, 1, 0, 360deg);}
+}
+
+/*FIRST BREAKPOINT*/
+@media screen and (max-width: 880px) {
+	/*reformatting*/
+	#shake-wrapper {
+		display: block;
+	}
+	.wide-page-more {
+		width: 100%;
+		height: 50%;
+	}
+	.wide-page-less {
+		width: 100%;
+		height: 50%;
+	}
+	.slot {
+		display: flex;
+		font-size: 4vmin;
+		padding-left: 5px;
+		padding-right: 5px;
+		align-items: center;
+		justify-content: flex-end;
+		line-height: 4vmin;
+	}
+	.box {
+		max-width: 450px;
+	}
+	.slider {
+		margin: 0px;
+		margin-left: 2px;
+		width: 50%;
+		height: 60%;
+	}
+	/*Audio container*/
+	.audio-slot {
+		display: flex;
+		flex-direction: row;
+		font-size: 4vmin;
+	}
+	
+	.audio-button {
+		width: 10vw;
+		height: 10vw;
+	}
+	
+	.audio-slot:hover {
+		cursor: pointer;
+	}
+	
+	#description-text-wrap {
+		font-size: 1.8vh;
+	}
+	/*variable is changed to sae time, faster than changing 3 envelope classes*/
+	:root {
+	  --envelope-size: 10vw;
+	}
+}
+
+/*Middle Breakpoint IPAD */
+@media screen and (max-height: 450px) {
+	.audio-slot {
+		font-size: 3vmin;
+	}
+	.audio-button {
+		width: 50px;
+		height: 50px;
+	}
+}
+/*Phone Breakpoint*/
+@media screen and (max-width: 380px) { 
+	body {
+		overflow: visible;
+	}
+	
+	.wide-page-less {
+		display: block;
+	}
+	
+	.slot {
+		font-size: 6vmin;
+		line-height: 5vmin;
+	}
+	
+	#reset {
+		font-size: calc(4vh-1vw);
+	}
+	
+	#slot-container {
+		width: 100%;
+	}
+	
+	#audio-container {
+		width: 100%;
+		height: auto;
+		display: flex;
+	}
+	
+	.audio-slot {
+		height: auto;
+		width: calc(100%/3);
+		display: flex;
+		flex-direction: column;
+		font-size: 8vmin;
+		justify-content: space-between;
+		align-items: center;
+		text-align: center;
+		border-width: 1vmin;
+	}
+	
+	.audio-button {
+		width: 20vmin;
+		height: 20vmin;
+		font-size: 20%;
+	}
+	
+	#description-text-wrap {
+		font-size: 1.6vh;
+	}
+	
+	#title {
+		font-size: 3vh;
+	}
+	
+	:root {
+	  --envelope-size: 20vw;
+	}
+}
+	
