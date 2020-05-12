@@ -101,26 +101,34 @@ function everythingSpin(elem) {
 	if (allStatsLoaded) {
 		var spinnables = document.getElementsByClassName("will-spin");
 		for (var i = 0; i < spinnables.length; i++) {
-			spinnables[i].classList.remove("spin");
-			spinnables[i].offsetWidth;
-			spinnables[i].classList.add("spin");
+			currentElem = spinnables[i];
+			currentElem.classList.remove("spin");
+			//offset width gives a 1 frame break for the classlist to update before
+			//readding the class and its animation
+			currentElem.offsetWidth;
+			currentElem.classList.add("spin");
 		}
 		/*creates a Queue of random sounds to be played for the next few seconds*/
-		for (var i = 0; i < 6000; i+= 400) {
-			setTimeout(randomSFX, i);
-			setTimeout(randomStatSound, i);
+		for (var i = 0; i < 10; i++) {
+			millisecondDelay = i * 400;
+			setTimeout(randomSFX, millisecondDelay);
+			setTimeout(randomStatSound, millisecondDelay);
 		}
 	}
 }
 
+maximumSaturation = 100;
 function increaseSaturation(amount) {
 	saturation += amount;
-	if (saturation == 100) {
-		saturation = 1000;
+	if (saturation == maximumSaturation) {
 		allStatsLoaded = true;
 		sideBarImg.classList.add("oscillate");
+		sideBarImg.style.filter = "saturate(" + 10 + ")";
 	}
-	sideBarImg.style.filter = "saturate("+(saturation/100)+")";
+	else if (allStatsLoaded == false) {
+		decimalValue = (saturation/100);
+		sideBarImg.style.filter = "saturate(" + decimalValue + ")";
+	}
 }
 
 function playAudioMic(elem) {
