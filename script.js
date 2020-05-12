@@ -8,6 +8,7 @@ var sliderSpeed = "1s";
 var saturation = 0;
 var arrowNotClicked = true;
 var allStatsLoaded = false;
+var chartSRC = "images/chart2.gif";
 
 var chartSound = document.getElementById("chart-sound");
 
@@ -45,7 +46,7 @@ function alternateGif(elem) {
 
 /*turns the chart into a gif*/
 function loadChart(elem) {
-	elem.src = "images/chart2.gif";
+	elem.src = chartSRC;
 	var sfx = chartSound.play();
 	sfx.currentTime = 0;
 }
@@ -61,9 +62,12 @@ function setPercent(elem, type) {
 
 /*calls a random index from the sound array*/
 function randomStatSound() {
+	//take a random value within the array's length and round it down to a valid index
 	var audioType = Math.floor(Math.random() * statSounds.length);
-	statSounds[audioType].play();
-	statSounds[audioType].currentTime = 0;
+	//only call the array once
+	sfxElem = statSounds[audioType];
+	sfxElem.play();
+	sfxElem.currentTime = 0;
 }
 /*same as above for a different array*/
 function randomSFX() {
